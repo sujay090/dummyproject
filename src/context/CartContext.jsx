@@ -8,7 +8,9 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (item) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find((cartItem) => cartItem.id === item.id);
+      const existingItem = prevItems.find(
+        (cartItem) => cartItem.id === item.id
+      );
       if (existingItem) {
         return prevItems.map((cartItem) =>
           cartItem.id === item.id
@@ -26,16 +28,17 @@ export const CartProvider = ({ children }) => {
   };
 
   const updateItemQuantity = (itemId, quantity) => {
-    setCartItems((prevItems) =>
-      prevItems
-        .map((item) => {
-          if (item.id === itemId) {
-            const newQuantity = item.quantity + quantity;
-            return { ...item, quantity: newQuantity };
-          }
-          return item;
-        })
-        .filter((item) => item.quantity > 0) // Remove items with quantity <= 0
+    setCartItems(
+      (prevItems) =>
+        prevItems
+          .map((item) => {
+            if (item.id === itemId) {
+              const newQuantity = item.quantity + quantity;
+              return { ...item, quantity: newQuantity };
+            }
+            return item;
+          })
+          .filter((item) => item.quantity > 0) // Remove items with quantity <= 0
     );
   };
 
